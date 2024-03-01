@@ -1,0 +1,26 @@
+{
+    "pimcore_process_log": {
+        "column": {
+            "entity_id": true,
+            "title": true,
+            "type": true,
+            "pimcore_id": true,
+            "payload": true,
+            "failed_response": true,
+            "republish_count": true,
+            "email_send": true,
+            "is_processed": true,
+            "created_at": true,
+            "updated_at": true,
+            "execution_type": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "eav_attribute_option": {
+        "column": {
+            "pimcore_id": true
+        }
+    }
+}

@@ -1,0 +1,157 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="pimcore" translate="label" sortOrder="200">
+            <label>Pimcore</label>
+        </tab>
+        <section id="pimcore" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <class>separator-top</class>
+            <label>Pimcore Configurations</label>
+            <tab>pimcore</tab>
+            <resource>Codilar_MagentoPimcoreConnector::configuration</resource>
+            <group id="pim_republish" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Queue re-publish configuration</label>
+                <field id="product_republish_limit" translate="label" type="text" sortOrder="2" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Product republish limit</label>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="category_republish_limit" translate="label" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Category republish limit</label>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="asset_republish_limit" translate="label" type="text" sortOrder="4" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Assets republish limit</label>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+            </group>
+            <group id="pim_admin_details" translate="label" type="text" sortOrder="200" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <label>Emails</label>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable/Disable Email Report</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Enable sending error report after reaching limit]]>
+                    </comment>
+                </field>
+                <field id="sender" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Email Sender</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Identity</source_model>
+                </field>
+                <field id="admin_email" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Admin E-mail Ids</label>
+                    <validate>validate-no-html-tags</validate>
+                    <comment>
+                        <![CDATA[Admin email ids in comma separated format without space]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="api_endpoint_config" translate="label" type="text" sortOrder="300" showInDefault="1"
+                   showInWebsite="0"
+                   showInStore="0">
+                <label>Api configuration</label>
+                <field id="base_url" translate="label" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Base URL</label>
+                    <validate>required-entry</validate>
+                    <comment>
+                        <![CDATA[Add base url including http or https]]>
+                    </comment>
+                </field>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable/Disable Sync Status</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Enable sending sync status to pimcore]]>
+                    </comment>
+                </field>
+                <field id="sync_status_api_auth_secret" translate="label" type="text" sortOrder="3" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Authorization Api Key</label>
+                </field>
+            </group>
+            <group id="pim_assets_configuration" translate="label" type="text" sortOrder="400" showInDefault="1"
+                   showInWebsite="0" showInStore="0">
+                <label>Asset configuration</label>
+                <field id="base_url" translate="label" type="text" sortOrder="1" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0" canRestore="1">
+                    <label>Base Asset URL</label>
+                    <validate>required-entry</validate>
+                    <comment>
+                        <![CDATA[Add base url including http or https]]>
+                    </comment>
+                </field>
+                <field id="enable" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable URL asset import</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[If this is enabled, then assets will be downloaded and saved using image url without adding it to queue]]>
+                    </comment>
+                </field>
+            </group>
+            <group id="pim_debug" translate="label" type="text" sortOrder="500" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>Debug</label>
+                <field id="payload" translate="label" type="select" sortOrder="1" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable/Disable Payload Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Enable logging payload before consuming]]>
+                    </comment>
+                </field>
+                <field id="success_response" translate="label" type="select" sortOrder="2" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Enable/Disable Success Log</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>
+                        <![CDATA[Enable logging success response after consuming]]>
+                    </comment>
+                </field>
+                <field id="log_sync_status_payload" translate="label" type="select" sortOrder="3" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Log sync status payload</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="log_sync_status_response" translate="label" type="select" sortOrder="4" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Log sync status response</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="log_assets_payload" translate="label" type="select" sortOrder="5" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Log assets payload</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="log_assets_response" translate="label" type="select" sortOrder="6" showInDefault="1"
+                       showInWebsite="0" showInStore="0" canRestore="1">
+                    <label>Log assets response</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

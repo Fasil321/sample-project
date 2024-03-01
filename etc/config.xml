@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <pimcore>
+            <pim_republish>
+                <product_republish_limit>3</product_republish_limit>
+                <category_republish_limit>3</category_republish_limit>
+                <asset_republish_limit>3</asset_republish_limit>
+            </pim_republish>
+            <pim_admin_details>
+                <enable>1</enable>
+                <sender>general</sender>
+                <admin_email>pimcoreadmin@codilar.com</admin_email>
+            </pim_admin_details>
+            <api_endpoint_config>
+                <base_url>https://pimcore.codilar.com</base_url>
+                <enable>1</enable>
+            </api_endpoint_config>
+            <pim_assets_configuration>
+                <enable>0</enable>
+            </pim_assets_configuration>
+            <pim_debug>
+                <payload>1</payload>
+                <success_response>1</success_response>
+                <log_sync_status_payload>1</log_sync_status_payload>
+                <log_sync_status_response>1</log_sync_status_response>
+                <log_assets_payload>1</log_assets_payload>
+                <log_assets_response>1</log_assets_response>
+            </pim_debug>
+        </pimcore>
+    </default>
+</config>

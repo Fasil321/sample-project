@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/pim/catalog/import" method="POST">
+        <service class="Codilar\MagentoPimcoreConnector\Api\CatalogImportRepositoryInterface" method="save" />
+        <resources>
+            <resource ref="Codilar_MagentoPimcoreConnector::Pimcore_Catalog_Import" />
+        </resources>
+    </route>
+</routes>

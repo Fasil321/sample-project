@@ -1,0 +1,245 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Codilar\MagentoPimcoreConnector\Logger\CategoryImportHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\CategoryImportLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">pimCategoryImportLog</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Codilar\MagentoPimcoreConnector\Logger\CategoryImportHandler
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\ProductImportHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\ProductImportLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">PimProductImportError</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Codilar\MagentoPimcoreConnector\Logger\ProductImportHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\Data\PimcoreProcessLogInterface"
+                type="Codilar\MagentoPimcoreConnector\Model\PimcoreProcessLog"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\PimcoreProcessLogRepositoryInterface"
+                type="Codilar\MagentoPimcoreConnector\Model\PimcoreProcessLogRepository"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\AdminEmailSendRepositoryInterface"
+                type="Codilar\MagentoPimcoreConnector\Model\AdminEmailSendRepository"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="pimcore_log_listing_data_source" xsi:type="string">PimcoreLogCollection</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="PimcoreLogCollection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">pimcore_process_log</argument>
+            <argument name="resourceModel" xsi:type="string">
+                Codilar\MagentoPimcoreConnector\Model\ResourceModel\PimcoreProcessLog
+            </argument>
+        </arguments>
+    </virtualType>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\PimcoreCustomAttributeRepositoryInterface"
+                type="Codilar\MagentoPimcoreConnector\Model\PimcoreCustomAttributeRepository"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\ApiRequestServiceRepositoryInterface"
+                type="Codilar\MagentoPimcoreConnector\Model\ApiRequestServiceRepository"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\CatalogImportRepositoryInterface"
+                type="Codilar\MagentoPimcoreConnector\Model\CatalogImportRepository"/>
+    <!--category create or update log-->
+    <type name="Codilar\MagentoPimcoreConnector\Logger\CategoryCreateUpdateHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\CategoryCreateUpdateLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">pimCategoryCreateUpdateLog</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Logger\CategoryCreateUpdateHandler
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!--category delete log-->
+    <type name="Codilar\MagentoPimcoreConnector\Logger\CategoryDeleteHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\CategoryDeleteLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">pimCategoryDeleteLog</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Codilar\MagentoPimcoreConnector\Logger\CategoryDeleteHandler
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!--product create or update log-->
+    <type name="Codilar\MagentoPimcoreConnector\Logger\ProductCreateUpdateHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\ProductCreateUpdateLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">pimProductCreateUpdateLog</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Logger\ProductCreateUpdateHandler
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <!--product delete log-->
+    <type name="Codilar\MagentoPimcoreConnector\Logger\ProductDeleteHandler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Logger\ProductDeleteLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">pimProductDeleteLog</argument>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Codilar\MagentoPimcoreConnector\Logger\ProductDeleteHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- for pimcore  modifications-->
+    <preference for="Codilar\MagentoPimcoreConnector\Api\Pimcore\PimcoreAttributeMapperInterface" type="Codilar\MagentoPimcoreConnector\Model\Pimcore\SimpleAttributeMapper"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Message\Convertor\Data\PropertyResolverInterface" type="Codilar\MagentoPimcoreConnector\Message\Convertor\Data\PropertyResolver"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\ProductRepositoryInterface" type="Codilar\MagentoPimcoreConnector\Model\ProductRepository"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Api\CategoryRepositoryInterface" type="Codilar\MagentoPimcoreConnector\Model\CategoryRepository"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Model\Asset\TypeMetadataExtractorInterface" type="Codilar\MagentoPimcoreConnector\Model\Asset\TypeMetadataExtractor" />
+    <preference for="Codilar\MagentoPimcoreConnector\Api\Data\AssetMessageInterface" type="Codilar\MagentoPimcoreConnector\Model\Asset\AssetMessage"/>
+    <preference for="Codilar\MagentoPimcoreConnector\Model\Product\GalleryImagesUpdaterInterface" type="Codilar\MagentoPimcoreConnector\Model\Product\GalleryImagesUpdater"/>
+
+    <type name="Codilar\MagentoPimcoreConnector\Model\Pimcore\PimcoreProduct">
+        <arguments>
+            <argument name="complexMappers" xsi:type="array">
+                <item name="visibility" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\VisibilityMapper
+                </item>
+                <item name="is_active_in_pim" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\BooleanMapper
+                </item>
+                <item name="bundle_options" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\BundleOptionMapper
+                </item>
+                <item name="shipment_type" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\ShipmentTypeMapper
+                </item>
+                <item name="quantity_and_stock_status" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\StockStatusMapper
+                </item>
+                <item name="country_of_manufacture" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\CountryofmanufactureMapper
+                </item>
+                <item name="tax_class_id" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\TaxClassMapper
+                </item>
+                <item name="page_layout" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\PageLayoutMapper
+                </item>
+                <item name="options_container" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\OptionsContainerMapper
+                </item>
+                <item name="custom_design" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\CustomDesignMapper
+                </item>
+                <item name="custom_layout" xsi:type="object">
+                    Codilar\MagentoPimcoreConnector\Model\Pimcore\Mapper\CustomLayoutMapper
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Services\ProductImportConsumer">
+        <arguments>
+            <argument name="convertor" xsi:type="object">Codilar\MagentoPimcoreConnector\Message\Convertor\ProductUpdateConvertor</argument>
+            <argument name="dataModifiers" xsi:type="array">
+                <item name="priceModifier" xsi:type="object">Codilar\MagentoPimcoreConnector\Model\Product\PriceModifier</item>
+                <item name="eav_attribute_option_modifier" xsi:type="object">Codilar\MagentoPimcoreConnector\Model\Product\EavAttributeOptionModifier</item>
+                <item name="category_ids_modifier" xsi:type="object">Codilar\MagentoPimcoreConnector\Model\Product\CategoryIdsModifier</item>
+                <item name="news_to_modifier" xsi:type="object">Codilar\MagentoPimcoreConnector\Model\Product\NewsToModifier</item>
+                <item name="media_gallery_modifier" xsi:type="object">Codilar\MagentoPimcoreConnector\Model\Product\MediaGalleryDataModifier</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Consumer\AssetConsumer">
+        <arguments>
+            <argument name="convertor" xsi:type="object">Codilar\MagentoPimcoreConnector\Message\Convertor\AssetUpdateConvertor</argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\Model\ProductType\ProductTypeFactory">
+        <arguments>
+            <argument name="types" xsi:type="array">
+                <item name="simple" xsi:type="string">Codilar\MagentoPimcoreConnector\Model\ProductType\SimpleProductType</item>
+                <item name="configurable" xsi:type="string">Codilar\MagentoPimcoreConnector\Model\ProductType\ConfigurableProductType</item>
+                <item name="bundle" xsi:type="string">Codilar\MagentoPimcoreConnector\Model\ProductType\BundleProductType</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Codilar\MagentoPimcoreConnector\EventListeners\NewAttributeListener">
+        <arguments>
+            <argument name="attrCodeValidator" xsi:type="object">Codilar\MagentoPimcoreConnector\EventListeners\Validator\AttributeCodeValidator</argument>
+        </arguments>
+    </type>
+    <!-- TODO check and more attributes we are passing this attributes to restrict while creating -->
+    <type name="Codilar\MagentoPimcoreConnector\EventListeners\NewAttributeListener">
+        <arguments>
+            <argument name="strategyFactory" xsi:type="object">Codilar\MagentoPimcoreConnector\Model\Catalog\Product\Attribute\Creator\Strategy\AttributeCreationStrategyFactory</argument>
+            <argument name="excludedAttributes" xsi:type="array">
+                <item name="visibility" xsi:type="string">visibility</item>
+                <item name="sku" xsi:type="string">sku</item>
+                <item name="sku_type" xsi:type="string">sku_type</item>
+                <item name="name" xsi:type="string">name</item>
+                <item name="price" xsi:type="string">price</item>
+                <item name="price_type" xsi:type="string">price_type</item>
+                <item name="price_type_view" xsi:type="string">price_type_view</item>
+                <item name="qty" xsi:type="string">qty</item>
+                <item name="weight" xsi:type="string">weight</item>
+                <item name="weight_type" xsi:type="string">weight_type</item>
+                <item name="product_has_weight" xsi:type="string">product_has_weight</item>
+                <item name="category_ids" xsi:type="string">category_ids</item>
+                <item name="image" xsi:type="string">image</item>
+                <item name="thumbnail" xsi:type="string">thumbnail</item>
+                <item name="small_image" xsi:type="string">small_image</item>
+                <item name="gallery" xsi:type="string">gallery</item>
+                <item name="quantity_and_stock_status" xsi:type="string">quantity_and_stock_status</item>
+                <item name="swatch_image" xsi:type="string">swatch_image</item>
+                <item name="pimcore_id" xsi:type="string">pimcore_id</item>
+                <item name="tier_price" xsi:type="string">tier_price</item>
+                <item name="url_key" xsi:type="string">url_key</item>
+                <item name="shipment_type" xsi:type="string">shipment_type</item>
+                <item name="status" xsi:type="string">status</item>
+                <item name="is_active_in_pim" xsi:type="string">is_active_in_pim</item>
+                <item name="attribute_set_id" xsi:type="string">attribute_set_id</item>
+                <item name="bundle_options" xsi:type="string">bundle_options</item>
+                <item name="country_of_manufacture" xsi:type="string">country_of_manufacture</item>
+                <item name="tax_class_id" xsi:type="string">tax_class_id</item>
+                <item name="page_layout" xsi:type="string">page_layout</item>
+                <item name="options_container" xsi:type="string">options_container</item>
+                <item name="custom_design" xsi:type="string">custom_design</item>
+                <item name="custom_layout" xsi:type="string">custom_layout</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Catalog\Model\ProductRepository" type="Codilar\MagentoPimcoreConnector\Model\ProductRepository"/>
+    <preference for="Magento\Catalog\Model\CategoryRepository" type="Codilar\MagentoPimcoreConnector\Model\CategoryRepository"/>
+    <type name="Magento\Catalog\Model\Category">
+        <plugin name="before_get_product_options"
+                type="Codilar\MagentoPimcoreConnector\Plugin\Model\Category" sortOrder="1"/>
+    </type>
+</config>

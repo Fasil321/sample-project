@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/email_templates.xsd">
+    <template id="pimcore_data_import_failed" label="Pimcore data import failed email" file="pimcore_data_import.html"
+              type="html" module="Codilar_MagentoPimcoreConnector" area="frontend" />
+</config>

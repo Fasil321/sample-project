@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="pimcore_product_update_after">
+        <observer name="categoriesLinker"
+                  instance="Codilar\MagentoPimcoreConnector\EventListeners\CategoryLinkerListener" />
+        <observer name="relatedProductsLinker"
+                  instance="Codilar\MagentoPimcoreConnector\EventListeners\RelatedProductsLinkerListener" />
+        <observer name="configurableProductsLinker"
+                  instance="Codilar\MagentoPimcoreConnector\EventListeners\LinkConfigurableListener" />
+        <observer name="assetQueueUpdater"
+                  instance="Codilar\MagentoPimcoreConnector\EventListeners\AssetQueueUpdater" />
+    </event>
+    <event name="catalog_product_attributes_evaluate">
+        <observer name="newAttributesHandler"
+                  instance="Codilar\MagentoPimcoreConnector\EventListeners\NewAttributeListener" />
+    </event>
+    <event name="pimcore_category_update_after">
+        <observer name="categoryAssetQueueUpdater"
+                  instance="Codilar\MagentoPimcoreConnector\EventListeners\CategoryAssetQueueUpdater" />
+    </event>
+</config>

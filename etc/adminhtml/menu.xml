@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Codilar_MagentoPimcoreConnector::pimcore_menu" title="Pimcore" module="Codilar_MagentoPimcoreConnector"
+             sortOrder="100" parent="Magento_Catalog::catalog"
+             resource="Codilar_MagentoPimcoreConnector::pimcore_menu" />
+        <add id="Codilar_MagentoPimcoreConnector::pimcore_sub_menu" title="Pimcore Log"
+             module="Codilar_MagentoPimcoreConnector" sortOrder="10"
+             action="pimcore/index/index" parent="Codilar_MagentoPimcoreConnector::pimcore_menu"
+             resource="Codilar_MagentoPimcoreConnector::pimcore_sub_menu" />
+    </menu>
+</config>
