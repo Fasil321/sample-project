@@ -1,14 +1,30 @@
 {
-    "name": "magento/sample-data-media",
-    "description": "Sample Data media files",
-    "type": "magento2-component",
-    "extra": {
-        "map": [
-            [
-                "*",
-                "pub/media"
-            ]
-        ]
+    "name": "fasil321/magentopimcoreconnector",
+    "description": "NA",
+    "version": "1.0.0",
+    "require": {
+        "php": "~8.1.0||~8.2.0",
+        "magento/module-catalog": "^102.0"
     },
-    "version": "100.4.0"
+    "type": "magento2-module",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "fasil",
+            "email": "support@fasil.com",
+            "homepage": "https://www.fasil.com/",
+            "role": "Technical Support"
+        }
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Fasil\\MagentoPimcoreConnector\\": ""
+        }
+    }
 }
