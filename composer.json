@@ -3,8 +3,7 @@
     "description": "NA",
     "version": "1.0.0",
     "require": {
-        "php": "~8.1.0||~8.2.0",
-        "magento/module-catalog": "^102.0"
+        
     },
     "type": "magento2-module",
     "license": [
